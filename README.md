@@ -25,4 +25,9 @@
 ▶ 필터 기능을 통해 필요한 부분만 렌더링 하도록 설정 <br/>
 ▶`yarn add classnames@2.5.1` css 동적 사용(active로 활성 비활성)<br/>
 ▶ `yarn add -D vite-plugin-svgr@4.2.0` svg를 컴포넌트<br/>
-▶ onCompositionEnd를 사용해서 단어완성과 useState로 상태를 판단
+▶ onCompositionEnd를 사용해서 단어완성과 useState로 상태를 판단<br/>
+
+## 레이아웃 구성 
+
+▶`PropsWithChildren`를 통해 children을 배치<br/>
+▶wide와 narrow로 넒고 좁은 레이아웃을 컴포넌트화 하여 적용<br/>

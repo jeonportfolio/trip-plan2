@@ -3,6 +3,7 @@ import CityList from "@/components/home/CityList";
 import { City } from "@/types";
 import SearchInput from "@/components/home/SearchInput";
 import { useState } from "react";
+import NarrowLayout from "@/components/common/NarrowLayout";
 
 export default function Home() {
 
@@ -11,7 +12,7 @@ export default function Home() {
     const [search, setSearch] = useState('');
 
     return (
-        <div className="max-w-[655px] w-full mx-auto flex flex-col items-center">
+        <NarrowLayout className="flex flex-col items-center my-30">
             <div className="w-[339] mb-24">
                 <SearchInput value = {search} onChange = {setSearch} onCompositionEnd = {value => console.log(value)}/> 
             </div>
@@ -20,7 +21,7 @@ export default function Home() {
              <FilterList active="all" onChange={() => {}}/>
             </div>
             <CityList cities={DUMMY_DATA}/>
-        </div>
+        </NarrowLayout>
     );
 }
 
