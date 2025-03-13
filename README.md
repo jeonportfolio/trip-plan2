@@ -27,7 +27,10 @@
 ▶ `yarn add -D vite-plugin-svgr@4.2.0` svg를 컴포넌트<br/>
 ▶ onCompositionEnd를 사용해서 단어완성과 useState로 상태를 판단<br/>
 
-## 레이아웃 구성 
+## 레이아웃 구성 & 상태관리
 
-▶`PropsWithChildren`를 통해 children을 배치<br/>
-▶wide와 narrow로 넒고 좁은 레이아웃을 컴포넌트화 하여 적용<br/>
+▶ `PropsWithChildren`를 통해 children을 배치<br/>
+▶ wide와 narrow로 넒고 좁은 레이아웃을 컴포넌트화 하여 적용<br/>
+▶ zustand를 활용해 상태관리 `yarn add zustand@4.5.4` -> 일시적인 데이터는 useState 사용 모든 컴포넌트에 공유되는 것은 zustand<br/>
+
+
