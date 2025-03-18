@@ -1,0 +1,5 @@
+{"code":"ZA","name":"남아프리카 공화국","nameEn":"South Africa","voltage":230,"visa":{"required":false,"duration":90},"continent":"Afirca","_id":"1RyI5tXUgNIPqMS3"}
+{"code":"KR","name":"대한민국","nameEn":"South Korea","voltage":220,"visa":{"required":false,"duration":90},"continent":"Asia","_id":"RqKBncKG4zP4mddB"}
+{"code":"FR","name":"프랑스","nameEn":"France","voltage":230,"visa":{"required":false,"duration":90},"continent":"Europe","_id":"UYAzcM3XbSYNQtJe"}
+{"code":"US","name":"미국","nameEn":"United States","voltage":120,"visa":{"required":true,"duration":180},"continent":"North America","_id":"YxLmDyiio3KcJwh6"}
+{"code":"AU","name":"호주","nameEn":"Australia","voltage":230,"visa":{"required":true,"duration":365},"continent":"Oceania","_id":"uiub7b6Cuvn3rkWH"}

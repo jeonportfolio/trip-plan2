@@ -33,4 +33,9 @@
 ▶ wide와 narrow로 넒고 좁은 레이아웃을 컴포넌트화 하여 적용<br/>
 ▶ zustand를 활용해 상태관리 `yarn add zustand@4.5.4` -> 일시적인 데이터는 useState 사용 모든 컴포넌트에 공유되는 것은 zustand<br/>
 
+## 데이터 API 연동 
 
+▶ 국가 및 도시 이름, 비행시간, 비자, 전압값 등의 정보 데이터 타입설정 -> Chat Gpt를 사용해 데이터 생성<br/>
+▶ JSON 형식으로 useRef를 사용해 country 데이터 받기 <br/>
+▶ 서버에서 클라이언트로 데이터 가져오기 React-Query사용 `yarn add @tanstack/react-query@5.29.2`<br/>
+서치 할때 $or 연산자로 비슷한 검색어 찾기
