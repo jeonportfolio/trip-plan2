@@ -38,4 +38,8 @@
 ▶ 국가 및 도시 이름, 비행시간, 비자, 전압값 등의 정보 데이터 타입설정 -> Chat Gpt를 사용해 데이터 생성<br/>
 ▶ JSON 형식으로 useRef를 사용해 country 데이터 받기 <br/>
 ▶ 서버에서 클라이언트로 데이터 가져오기 React-Query사용 `yarn add @tanstack/react-query@5.29.2`<br/>
-서치 할때 $or 연산자로 비슷한 검색어 찾기
+▶ 서치 할때 $or 연산자로 비슷한 검색어 찾기 (국가와 도시)<br/>
+
+## 모달 컴포넌트 생성
+▶ 컨텐츠를 보여주는 모달과 backDrop 생성 createPortal 사용<br/>
+▶ zustand로 모달의 상태 관리(store.ts), ModalProvider을 통해 전체 관리<br/>
