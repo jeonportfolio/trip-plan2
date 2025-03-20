@@ -5,7 +5,8 @@ export interface City {
     thumbnail: string; // 썸네일 이미지
     description:string;
     timezone: string; //도시의 타임존
-    flightHour: number; //비행시간 
+    flightHour: number; //비행시간
+    timezoneOffset: number; //시차시간 
     cordinates: {
         lat: number;
         lng: number;

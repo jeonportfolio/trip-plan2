@@ -43,3 +43,4 @@
 ## 모달 컴포넌트 생성
 ▶ 컨텐츠를 보여주는 모달과 backDrop 생성 createPortal 사용<br/>
 ▶ zustand로 모달의 상태 관리(store.ts), ModalProvider을 통해 전체 관리<br/>
+▶ flex-1 속성으로 이미지 먼저 자리잡고 설명 구성<br/>
