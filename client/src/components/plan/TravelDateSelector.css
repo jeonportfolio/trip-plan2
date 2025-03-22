@@ -1,0 +1,9 @@
+.react-datepicker{
+    @apply rounded-16;
+    @apply border-2;
+    @apply border-gray200;
+    @apply bg-bg2;
+    @apply overflow-hidden;
+    @apply py-36;
+    @apply px-26;
+}
