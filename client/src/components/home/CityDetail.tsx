@@ -4,6 +4,7 @@ import FligthtIcon from'@/assets/icons/flight.svg?react'
 import VisaIcon from'@/assets/icons/ticket.svg?react'
 import VoltageIcon from'@/assets/icons/power.svg?react'
 import ClockIcon from'@/assets/icons/schedule.svg?react'
+import Button from "../common/Button";
 
 interface Props {
     city: City;
@@ -30,7 +31,7 @@ export default function CityDetail({city}: Props) {
                             직항
                         </p>
                         <p>
-                            막 {city.flightHour} 시간
+                             약{city.flightHour} 시간
                         </p>
                      </div>
                      <div className="flex flex-col">
@@ -84,12 +85,12 @@ export default function CityDetail({city}: Props) {
             />
         </div>
         <div>
-            <button className="w-185 bg-black text-white text-16 font-medium rounded-6 py-14 flex items-center justify-center">
+            <Button className="w-185 flex items-center justify-center">
                 <span className="ml-8">
                     일정 만들기
                 </span>
                 <ArrowIcon className="ml-5"/>
-            </button>
+            </Button>
         </div>
     </div>;
 }

@@ -50,3 +50,8 @@
 ▶ `yarn add react-datepicker@7.3.0` 설치 -> `react-datepicker/dist/react-datepicker.css`로 스타일링<br/>
 ▶ 시작과 끝 날짜 범위를 선택할 수 있게 설정 (시작일로부터 10일까지)<br/>
 ▶ `yarn add date-fns@3.6.0` -> 한글로 설정 
+
+## 일정 선택  <br/>
+
+▶ store.ts에서 Zustand로 상태관리<br/>
+▶ 시작날짜와 종료날짜 선택후 일정 전달 -> 선택이 되지 않으면 버튼 활성화 x<br/>

@@ -4,19 +4,23 @@ import { create } from "zustand";
 interface State {
     startDate: Date | null;
     endDate: Date | null;
+    status: 'period_edit' | 'planning';
 }
 
 type Action = {
-    setStartDate: (date: Date) => void;
-    setEndDate:(date: Date) => void;
+    setStartDate: (date: Date | null) => void;
+    setEndDate:(date: Date | null ) => void;
+    setStatus: (status: State['status']) => void;
 }
 
 
-export const store = create<State & Action>()(set => ({
+export const usePlanStore = create<State & Action>()(set => ({
     startDate:null,
     endDate:null,
+    status:'period_edit',
     setStartDate: (date) => set({ startDate: date}),
-    setEndDate: (date) => set({ endDate: date})
+    setEndDate: (date) => set({ endDate: date}),
+    setStatus: status => set({ status }),
 }))
 
 interface ModalState {
