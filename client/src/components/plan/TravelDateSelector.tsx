@@ -39,7 +39,7 @@ export default function TravelDateSelector() {
                 decreaseMonth,
                 increaseMonth,
               }) => (
-                <div>
+                <div className="mb-14 flex justify-center">
                   <button
                     aria-label="Previous Month"
                     className={
