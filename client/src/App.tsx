@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react';
 import Loading from './components/common/Loading';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ModalProvider from './components/common/ModalProvider';
+import '@/utils/date';
 
 const Home = lazy(() => import('@/pages/home/Home'))
 const RegisterCity = lazy(() => import('@/pages/admin/RegisterCity'));

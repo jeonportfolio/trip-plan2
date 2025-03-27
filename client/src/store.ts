@@ -13,6 +13,7 @@ type Action = {
     setStartDate: (date: Date | null) => void;
     setEndDate:(date: Date | null ) => void;
     setStatus: (status: State['status']) => void;
+    setDailyTime: (index: number, time: string, type:'startTime' | 'endTime') => void;
 }
 
 
@@ -43,7 +44,15 @@ export const usePlanStore = create<State & Action>()((set, get) => ({
         }
     },
     setStatus: status => set({ status }),
-}))
+    setDailyTime: (index, time, type) => {
+            set(state => ({
+                dailyTimes:state.dailyTimes.map((dailyTime, i) => 
+                    i === index ? {...dailyTime, [type]: time } : dailyTime,
+                ),
+            }));
+        },
+}));
+        
 
 interface ModalState {
     modals: FunctionComponent<{ onClose: () => void}>[];

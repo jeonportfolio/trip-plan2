@@ -62,3 +62,6 @@
 ▶ endDate가 설정된 후 이동 -> endDate가 정해진 경우와 안 정해진 경우를 나눔 <br/>
 ▶ 기본 시간 (오전 10시 ~ 오후 10시)의 데이터로 store에 저장 (시작일과 종료일의 차이만큼 시간 목록 생성)<br/>
 ▶ 탭창, 시간 선택창, 지도정보로 구성 (classnames를 사용해서 active상태 판별)<br/>
+▶ 시간과 분을 slice를 사용해 나누어 시간 부분은 60을 곱함<br/>
+▶ date-fns로 format하여 시차와 날짜 표시<br/>
+▶ 시간 변경 action을 store.ts에 추가 (setDailyTime)<br/>

@@ -9,7 +9,7 @@ export default function PlanController () {
     return( <div className="h-full flex">
         <PlanSteps/>
         
-    <div>
+    <div className="px-24 py-30 flex-col gap-y-10">
         <PlanControllerHeader startDate={startDate} endDate={endDate}/>    
         <DailyTimeSelector/>
     </div>
