@@ -65,3 +65,10 @@
 ▶ 시간과 분을 slice를 사용해 나누어 시간 부분은 60을 곱함<br/>
 ▶ date-fns로 format하여 시차와 날짜 표시<br/>
 ▶ 시간 변경 action을 store.ts에 추가 (setDailyTime)<br/>
+
+## 구글 맵 추가 <br/>
+
+▶ google map api키를 발급 받아 연동 env파일로 저장후 typeScript에서 사용 가능하게 vite-env.ts에 설정 <br/>
+▶ `yarn add @react-google-maps/api@2.19.3`설치 <br/>
+▶ 구글 맵을 연동한 후 위도와 경도로 중심을 잡음 -> 현위치 마커 표시  <br/>
+▶ fetch를 통해 api를 받는다 비동기 작업 Promise 사용<br/>
