@@ -72,3 +72,8 @@
 ▶ `yarn add @react-google-maps/api@2.19.3`설치 <br/>
 ▶ 구글 맵을 연동한 후 위도와 경도로 중심을 잡음 -> 현위치 마커 표시  <br/>
 ▶ fetch를 통해 api를 받는다 비동기 작업 Promise 사용<br/>
+
+## Wizard 컴포넌트 <br/>
+
+▶ 컴포넌트 내에서만 상태(useState), 컴포넌트를 넘나드는 상태(contextAPI), 전역상태(zustand) => 컴포넌트 내부에서 사용하므로 useState<br/>
+▶ 버튼과 탭창으로 각각의 파트로 이동 <br/>
