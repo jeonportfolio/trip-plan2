@@ -77,3 +77,13 @@
 
 ▶ 컴포넌트 내에서만 상태(useState), 컴포넌트를 넘나드는 상태(contextAPI), 전역상태(zustand) => 컴포넌트 내부에서 사용하므로 useState<br/>
 ▶ 버튼과 탭창으로 각각의 파트로 이동 <br/>
+
+## 장소 리스트 <br/>
+
+▶ 장소로 검색을 쉽게 하기 위해 인덱스 사용 -> 검색속도를 높임 (placeDB.ensureIndex({ fieldName: 'city' }))<br/>
+▶ 도시로 부터 api 호출 -> Json 방식으로 ChatGpt에게 데이터 도출<br/>
+▶ nedb에서 dataStore을 사용해 파일경로를 적고 autoload시켜 데이터를 받는다 Admin에서 데이터 등록<br/>
+▶ city를 param값으로 받아 해당하는 url을 통해 데이터를 받는다 <br/>
+▶ 서버와 클라이언트 모두 타입 지정, 카테고리 별 상태지정 useState<br/>
+▶ service -> plan.ts에서 fetch로 데이터를 받는다 (URLSearchParams(query)를 사용하여 query 객체를 URL 쿼리 문자열로 변환해서 json형태로 받음) Promise를 사용해서 비동기적 데이터 안정성 향상<br/>
+

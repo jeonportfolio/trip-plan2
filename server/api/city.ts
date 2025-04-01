@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { City, Country } from "../types";
-import { citiesDB, countriesDB } from "../db";
+import { City, Country, Place } from "../types";
+import { citiesDB, countriesDB, placesDB } from "../db";
 
 
 const cityRouter = Router();
@@ -105,6 +105,40 @@ cityRouter.post('/', (req, res) => {
         } else {
             res.send(doc);
         } 
+    });
+});
+
+cityRouter.post('/:city/places', (req, res) => {
+    const place = req.body;
+    const city = req.params.city;
+
+    placesDB.insert({ ...place, city }, (err: Error | null, place: Place) => {
+        if(err) {
+            res.status(400).send(err);
+        } else {
+            res.send(place);
+        }
+    });
+});
+
+cityRouter.get('/:city/places', (req ,res) => {
+    const city = req.params.city;
+    const category = req.query.category as Place['category'];
+    const q = req.query.q as string;
+
+    const query = {
+        city,
+        ...(category ? { category } : {}),
+        ...(q ? { name: new RegExp(q,'i')} : {})
+    }
+
+    
+    placesDB.find(query , (err: Error | null, places: Place[]) => {
+        if(err) {
+            res.status(500).send(err);
+        } else {
+            res.send(places);
+        }
     });
 });
 

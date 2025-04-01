@@ -1,6 +1,6 @@
 import FilterList from "@/components/home/FilterList";
 import CityList from "@/components/home/CityList";
-import SearchInput from "@/components/home/SearchInput";
+import SearchInput from "@/components/common/SearchInput";
 import NarrowLayout from "@/components/common/NarrowLayout";
 import { useQuery } from "@tanstack/react-query";
 import { getCities, getSearchedCities } from "@/services/home";
