@@ -11,7 +11,7 @@ interface Props{
 
 export default function PlaceList({ places }: Props) {
     return (
-        <div className="flex flex-col gap-y-24 overflow-y-scroll h-full">
+        <div className="flex flex-col overflow-y-scroll h-full">
             {places.map(place => (
                 <PlaceItem key={`${place.city}_${place.name}`} place={place}/>
             ))}
@@ -21,7 +21,7 @@ export default function PlaceList({ places }: Props) {
 
 function PlaceItem({ place }: { place: Place }){
     return (
-        <div className="flex gap-x-11">
+        <div className="flex gap-x-11 mb-24">
             <img className="w-68 h-68 rounded-6 bg-bg" src={place.thumbnail}></img>
             <div className="flex-1 flex flex-col items-start gap-y-8">
                 <h6 className="text-17 font-semibold tracking-[0.17px] ">{place.name}</h6>
@@ -41,7 +41,7 @@ function PlaceItem({ place }: { place: Place }){
                 </div>
             </div>
             <button className="relative">
-                <PlusIcon className="absolute top-1/2 transform -translate-y-1/2 left-1/2 -translate-x-1/2"/>
+                <PlusIcon className="absolute top-1/2 transform -translate-y-1/2  -translate-x-1/2"/>
             </button>
         </div>
     )

@@ -42,7 +42,7 @@ export default function PlanController () {
 
 function Layout({ startDate, endDate, children}: PropsWithChildren<{startDate: Date | null; endDate: Date | null;}>) {
     return (
-        <div className="px-24 py-30 flex-col gap-y-10 overflow-y-hidden h-full">
+        <div className="px-24 py-30 flex-col gap-y-18 overflow-y-hidden h-full">
             <PlanControllerHeader startDate={startDate} endDate={endDate}/>
             {children}    
         </div>

@@ -35,12 +35,11 @@ export default function PlaceContainer() {
     
     return(
         <div className="flex flex-col gap-y-18 h-full">
-            <SearchInput onCompositionEnd={(query) => setQ(query)}/>
+            <SearchInput onSearch={(query) => setQ(query)}/>
             <PlaceFilterList selected={filter} onFilter={handleFilter}/>
             <div className="flex-1 overflow-y-hidden">
                 {isLoading || !data ? <Loading/> : <PlaceList places={data}/> }
             </div>
-            <div>리스트</div>
         </div>
     );
 }

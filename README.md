@@ -86,4 +86,5 @@
 ▶ city를 param값으로 받아 해당하는 url을 통해 데이터를 받는다 <br/>
 ▶ 서버와 클라이언트 모두 타입 지정, 카테고리 별 상태지정 useState<br/>
 ▶ service -> plan.ts에서 fetch로 데이터를 받는다 (URLSearchParams(query)를 사용하여 query 객체를 URL 쿼리 문자열로 변환해서 json형태로 받음) Promise를 사용해서 비동기적 데이터 안정성 향상<br/>
+▶ 검색창 기능에서 Throttle기능을 사용함 동일한 콜백함수를 계속 불러오는것을 방지 <br/>
 
