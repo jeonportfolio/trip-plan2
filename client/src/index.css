@@ -13,6 +13,10 @@ body {
   line-height: 100%;
 }
 
+body * {
+  line-height:100%;
+}
+
 html , body {
   @apply h-full;
 }
