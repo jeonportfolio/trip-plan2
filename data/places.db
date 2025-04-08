@@ -8,4 +8,4 @@
 {"name":"봉피양 본점","city":"seoul","category":"restaurant","address":"서울 송파구 양재대로 1218","likes":3000,"rating":4.8,"coordinates":{"lat":37.516288,"lng":127.112986},"thumbnail":"http://picsum.photos/seed/place/200/300?random=8","_id":"mKMrI9H14oUPkqHv"}
 {"name":"한강공원 반포지구","city":"seoul","category":"attraction","address":"서울 서초구 신반포로11길 40","likes":4500,"rating":4.6,"coordinates":{"lat":37.5098,"lng":126.9965},"thumbnail":"http://picsum.photos/seed/place/200/300?random=7","_id":"n1QxVC9dI9jLRsNA"}
 {"name":"경복궁","city":"seoul","category":"attraction","address":"서울 종로구 사직로 161","likes":3200,"rating":4.8,"coordinates":{"lat":37.579617,"lng":126.977041},"thumbnail":"http://picsum.photos/seed/place/200/300?random=1","_id":"tUwvBtrGDWm6uczm"}
-
+{"$$indexCreated":{"fieldName":"city","unique":false,"sparse":false}}
