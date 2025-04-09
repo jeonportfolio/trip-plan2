@@ -37,8 +37,8 @@ export interface Country {
 export interface Place {
     name: string; // 장소의 이름
     thumbnail: string; // 썸네일 이미지 URL 
-    category: 'attraction' | 'restaurant' | 'cafe'; //장소 카테고리
-    address: string;//장소의 주소소
+    category: 'attraction' | 'restaurant' | 'cafe' | 'accomodation'; //장소 카테고리
+    address: string;//장소의 주소
     coordinates: {
         lat:number;
         lng: number;

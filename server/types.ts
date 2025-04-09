@@ -36,7 +36,7 @@ export interface Country {
 export interface Place {
     name: string; // 장소의 이름
     thumbnail: string; // 썸네일 이미지 URL 
-    category: 'attraction' | 'restaurant' | 'cafe'; //장소 카테고리
+    category: 'attraction' | 'restaurant' | 'cafe' | 'accommodation'; //장소 카테고리
     address: string;//장소의 주소소
     coordinates: {
         lat:number;
@@ -46,3 +46,4 @@ export interface Place {
     rating: number; //장소의 평점
     city: City['code'];// 구분자
 }
+

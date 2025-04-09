@@ -4,6 +4,7 @@ import PlanControllerHeader from "./PlanControllerHeader";
 import Wizard from "../common/Wizard";
 import PlaceController from "./PlaceController";
 import PlaceContainer from "./PlaceContainer";
+import AccomodationContainer from "./AccomodationContainer";
 
 export default function PlanController () {
     
@@ -45,7 +46,21 @@ export default function PlanController () {
                 content: () => (
                     <div className="px-24 py-30 flex-col gap-y-18 overflow-y-hidden h-full">
                          <PlanControllerHeader startDate={startDate} endDate={endDate}/>
-                        <div>숙소 선택</div>
+                         <div className="flex"> 
+                        <div className="px-24 py-30 flex-col gap-y-18 overflow-y-hidden h-full">
+                            <PlanControllerHeader startDate={startDate} endDate={endDate}/>
+                            <div className="h-full"> 
+                        <div className="p-14 border-b-3 border-b-main mb-18">
+                            <h4 className="text-18 font-semibold text-main">숙소 선택</h4>
+                        </div>
+                            <AccomodationContainer/>
+                        </div>
+                            
+                        </div>
+                        <div className="px-24 py-30">
+                            {/* <PlaceController/> */}
+                        </div>
+                   </div> 
                     </div>
                 ),
             },    

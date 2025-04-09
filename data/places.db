@@ -8,4 +8,10 @@
 {"name":"봉피양 본점","city":"seoul","category":"restaurant","address":"서울 송파구 양재대로 1218","likes":3000,"rating":4.8,"coordinates":{"lat":37.516288,"lng":127.112986},"thumbnail":"http://picsum.photos/seed/place/200/300?random=8","_id":"mKMrI9H14oUPkqHv"}
 {"name":"한강공원 반포지구","city":"seoul","category":"attraction","address":"서울 서초구 신반포로11길 40","likes":4500,"rating":4.6,"coordinates":{"lat":37.5098,"lng":126.9965},"thumbnail":"http://picsum.photos/seed/place/200/300?random=7","_id":"n1QxVC9dI9jLRsNA"}
 {"name":"경복궁","city":"seoul","category":"attraction","address":"서울 종로구 사직로 161","likes":3200,"rating":4.8,"coordinates":{"lat":37.579617,"lng":126.977041},"thumbnail":"http://picsum.photos/seed/place/200/300?random=1","_id":"tUwvBtrGDWm6uczm"}
-{"$$indexCreated":{"fieldName":"city","unique":false,"sparse":false}}
+
+{"name":"롯데호텔 서울","thumbnail":"http://picsum.photos/seed/place/200/300?random=1","category":"accomodation","address":"서울특별시 중구 을지로 30","coordinates":{"lat":37.564987,"lng":126.978388},"likes":1520,"rating":4.7,"city":"seoul","_id":"DlUCwT2gcSwGtWAe"}
+{"name":"신라호텔","thumbnail":"http://picsum.photos/seed/place/200/300?random=2","category":"accomodation","address":"서울특별시 중구 동호로 249","coordinates":{"lat":37.556427,"lng":127.006804},"likes":980,"rating":4.8,"city":"seoul","_id":"rPj9QXJ8C2W1SKFQ"}
+{"name":"그랜드 워커힐 서울","thumbnail":"http://picsum.photos/seed/place/200/300?random=3","category":"accomodation","address":"서울특별시 광진구 워커힐로 177","coordinates":{"lat":37.554722,"lng":127.114722},"likes":740,"rating":4.5,"city":"seoul","_id":"x77pXd9dCVcEKqqb"}
+{"name":"포시즌스 호텔 서울","thumbnail":"http://picsum.photos/seed/place/200/300?random=4","category":"accomodation","address":"서울특별시 종로구 새문안로 97","coordinates":{"lat":37.571416,"lng":126.975197},"likes":1100,"rating":4.9,"city":"seoul","_id":"lBx4lM9MjypUfQ4H"}
+{"name":"JW 메리어트 호텔 서울","thumbnail":"http://picsum.photos/seed/place/200/300?random=5","category":"accomodation","address":"서울특별시 서초구 신반포로 176","coordinates":{"lat":37.504705,"lng":127.004716},"likes":870,"rating":4.6,"city":"seoul","_id":"tgMVd2baopv8JcR0"}
+{"name":"나인트리 프리미어 호텔 명동","thumbnail":"http://picsum.photos/seed/place/200/300?random=6","category":"accomodation","address":"서울특별시 중구 퇴계로 139","coordinates":{"lat":37.561688,"lng":126.986176},"likes":620,"rating":4.3,"city":"seoul","_id":"YEGvFdCZXIjACxAU"}
