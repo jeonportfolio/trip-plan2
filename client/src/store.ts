@@ -12,6 +12,7 @@ interface State {
         place:Place;
         duration: number; // 분단위
     }[];
+    plannedAccomodations: Array<Place | null>;
 }
 
 type Action = {
@@ -22,6 +23,8 @@ type Action = {
     addPlannedPlace: (place: Place, duration: number) => void;
     removePlannedPlace: (index: number)=> void;
     setDurationForPlannedPlace: (index: number, duration: number) => void;
+    addPlannedAccomodation: (place: Place) => void;
+    removePlannedAccomodation: (index: number) => void;
 }
 
 
@@ -31,6 +34,7 @@ export const usePlanStore = create<State & Action>()((set, get) => ({
     status:'period_edit',
     dailyTimes: [],
     plannedPlaces:[],
+    plannedAccomodations: [],
     setStartDate: (date) => set({ startDate: date}),
     setEndDate: (date) => {
         if(date) {
@@ -47,9 +51,10 @@ export const usePlanStore = create<State & Action>()((set, get) => ({
             set({
                 dailyTimes,
                 endDate: date,
+                plannedAccomodations: Array.from({length: diff - 1}, () => null),
             })
         } else {
-            set({ endDate: date, dailyTimes:[]})
+            set({ endDate: date, dailyTimes:[], plannedAccomodations:[]})
         }
     },
     setStatus: status => set({ status }),
@@ -67,6 +72,20 @@ export const usePlanStore = create<State & Action>()((set, get) => ({
                 plannedPlaces: prev.plannedPlaces.map((place, i) => 
                     i === index ? {...place, duration} : place
             ),
+        })),
+        addPlannedAccomodation: (place: Place) => set(prev => {
+            const index = prev.plannedAccomodations.findIndex(p => p === null);
+            if(index === -1) return prev;
+            return {
+                plannedAccomodations: prev.plannedAccomodations.map((p,i) => i === index ? place:p)
+            }
+
+        }),
+
+        removePlannedAccomodation: (index: number) => set(prev => ({
+            plannedAccomodations: prev.plannedAccomodations.map((p,i) => 
+                i === index ? null : p
+        ),
         })),
     }));
             

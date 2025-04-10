@@ -6,10 +6,12 @@ import { useParams } from "react-router-dom";
 import { getPlaces } from "@/services/plan";
 import PlaceList from "./PlaceList";
 import Loading from "../common/Loading";
+import { usePlanStore } from "@/store";
 
 export default function AccomodationContainer() {
     const { city } = useParams();
     const [q,setQ] = useState('');
+    const { addPlannedAccomodation } = usePlanStore();
 
 
     const { isLoading, data} = useQuery({
@@ -30,7 +32,11 @@ export default function AccomodationContainer() {
         <div className="flex flex-col gap-y-18 h-full">
             <SearchInput onSearch={(query) => setQ(query)}/>
             <div className="flex-1 overflow-y-hidden">
-                {isLoading || !data ? (<Loading/>) : (<PlaceList places={data} onAddPlace={(place: Place) => console.log(place) } />)}
+                {isLoading || !data ? (<Loading/>) : (
+                    <PlaceList 
+                        places={data} 
+                        onAddPlace={(place: Place) => addPlannedAccomodation(place) } 
+                    />)}
             </div>
         </div>
     );

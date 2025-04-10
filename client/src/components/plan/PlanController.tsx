@@ -5,6 +5,7 @@ import Wizard from "../common/Wizard";
 import PlaceController from "./PlaceController";
 import PlaceContainer from "./PlaceContainer";
 import AccomodationContainer from "./AccomodationContainer";
+import AccomodationController from "./AccomodationController";
 
 export default function PlanController () {
     
@@ -58,7 +59,7 @@ export default function PlanController () {
                             
                         </div>
                         <div className="px-24 py-30">
-                            {/* <PlaceController/> */}
+                           <AccomodationController/>
                         </div>
                    </div> 
                     </div>
