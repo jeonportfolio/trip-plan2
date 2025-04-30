@@ -1,4 +1,4 @@
-import { GoogleMap, LoadScript, MarkerF, Polyline, PolylineF } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, PolylineF, useLoadScript } from "@react-google-maps/api";
 import { PropsWithChildren } from "react";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEYS;
@@ -14,9 +14,21 @@ interface Props {
     }[];
 }
 
+export function MapProvider({ children }: PropsWithChildren) {
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: API_KEY,
+    });
+
+    if(!isLoaded) {
+        return null;
+    }
+
+    return <>{children}</>
+}
+
 export default function Map({center, children}: PropsWithChildren<Props>) {
     return (
-        <LoadScript googleMapsApiKey={API_KEY}>
+       
             <GoogleMap 
                 center={center} 
                 zoom={12} 
@@ -25,7 +37,6 @@ export default function Map({center, children}: PropsWithChildren<Props>) {
             {children}
 
         </GoogleMap>
-        </LoadScript>
     )
 }
 

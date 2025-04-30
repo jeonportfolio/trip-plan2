@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 import { create } from "zustand";
 import { Place } from "./types";
 
-interface State {
+export interface PlanState {
     startDate: Date | null;
     endDate: Date | null;
     status: 'period_edit' | 'planning';
@@ -18,7 +18,7 @@ interface State {
 type Action = {
     setStartDate: (date: Date | null) => void;
     setEndDate:(date: Date | null ) => void;
-    setStatus: (status: State['status']) => void;
+    setStatus: (status: PlanState['status']) => void;
     setDailyTime: (index: number, time: string, type:'startTime' | 'endTime') => void;
     addPlannedPlace: (place: Place, duration: number) => void;
     removePlannedPlace: (index: number)=> void;
@@ -28,7 +28,7 @@ type Action = {
 }
 
 
-export const usePlanStore = create<State & Action>()((set, get) => ({
+export const usePlanStore = create<PlanState & Action>()((set, get) => ({
     startDate:null,
     endDate:null,
     status:'period_edit',
