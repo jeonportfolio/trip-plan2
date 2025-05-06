@@ -10,9 +10,10 @@ type Step = {
 
 interface Props {
     steps: Step[];
+    onCompleted?: () => void;
 }
 
-export default function Wizard({ steps }: Props) {
+export default function Wizard({ steps, onCompleted }: Props) {
     const [currentStep, setCurrentStep] = useState(0);
 
     const onNext = () => {
@@ -21,7 +22,12 @@ export default function Wizard({ steps }: Props) {
 
     return (
         <div className="flex">
-            <Steps steps={steps} currentStep={currentStep} onChangeStep={setCurrentStep}/>
+            <Steps 
+                steps={steps} 
+                currentStep={currentStep} 
+                onChangeStep={setCurrentStep}
+                onCompleted={onCompleted}
+            />
             {steps[currentStep].content({ onNext })}
         </div>
     )
@@ -30,11 +36,13 @@ export default function Wizard({ steps }: Props) {
 function Steps ({ 
         steps, 
         currentStep, 
-        onChangeStep
+        onChangeStep,
+        onCompleted
     }: {
         steps: Step[], 
         currentStep: number, 
-        onChangeStep: (index: number) => void
+        onChangeStep: (index: number) => void,
+        onCompleted?: () => void
     }) {
 
     return (
@@ -60,10 +68,19 @@ function Steps ({
                 )
             })}
         </ul>
-        {currentStep < steps.length -1 && 
-            <Button className="px-30" onClick={() => onChangeStep(currentStep + 1)}>
+        {(currentStep < steps.length -1 || 
+            onCompleted) && (
+            <Button 
+                className="px-30" 
+                onClick={() => 
+                    currentStep < steps.length - 1 
+                    ? onChangeStep(currentStep + 1) 
+                    : onCompleted?.()
+                }
+            >
                 다음
-            </Button>}
+            </Button>
+        )}
         
         </div>
     )

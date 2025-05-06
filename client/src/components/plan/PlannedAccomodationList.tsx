@@ -30,7 +30,7 @@ export default function PlannedAccomodationList ({
                       
                     />
                 ): (
-                    <EmptyAccomodation index={index} targetDate= {targetDate}/>
+                    <EmptyAccomodation index={index} targetDate= {targetDate}  key={`empty_${index}`} />
                 )
             })}
         </div>

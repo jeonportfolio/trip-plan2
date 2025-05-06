@@ -103,6 +103,7 @@
 
 ## 
 
+▶ MapProvider를 통해 앱 전역에 Google Map API 적용<br/>
 ▶ 모든 장소의 거리 판별(구글 Maps API 사용 (DistanceMatrixService)) -> 대중교통 사용<br/>
 ▶ 방문된 장소를 제외해서 중복을 방지<br/>
 ▶ 사용자가 설정한 거리와 시간을 판단<br/>

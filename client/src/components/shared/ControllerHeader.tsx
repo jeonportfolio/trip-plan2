@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-export default function PlanControllerHeader ({ startDate, endDate }: Props){
+export default function ControllerHeader ({ startDate, endDate }: Props){
     return (
         <div className="text-left">
             <h2 className="text-35 font-bold mb-18">서울</h2>
