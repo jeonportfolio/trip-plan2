@@ -3,6 +3,7 @@ import PlusIcon from"@/assets/icons/plus_rect.svg?react";
 import { categories } from "@/constants";
 import HeartIcon from '@/assets/icons/heart.svg?react';
 import StarIcon from '@/assets/icons/star.svg?react';
+import PlaceCategory from "../common/PlaceCategory";
 
 
 interface Props{
@@ -30,7 +31,7 @@ function PlaceItem({ place, onAddPlace }: { place: Place; onAddPlace: (place: Pl
             <div className="flex-1 flex flex-col items-start gap-y-8">
                 <h6 className="text-17 font-semibold tracking-[0.17px] ">{place.name}</h6>
                 <p className="text-14 tracking-0.14[px] text-gray500">
-                    <span className="text-main font-medium">{categories[place.category]}</span>
+                    <PlaceCategory className="text-14 tracking-[0.14px]" category={place.category}/>
                     {place.address}
                 </p>
                 <div className="flex text-14 tracking-[0.14] text-gray600">

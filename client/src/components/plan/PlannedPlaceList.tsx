@@ -1,9 +1,10 @@
-import { categories } from "@/constants";
+
 import { Place } from "@/types";
 import DeleteIcon from '@/assets/icons/trashcan.svg?react';
 import { useState } from "react";
 import { parseTime } from "@/utils/time";
 import Button from "../common/Button";
+import PlaceCategory from "../common/PlaceCategory";
 
 interface Props {
     plannedPlace: {
@@ -64,9 +65,7 @@ function PlannedPlace({ plannedPlace, index, onDeletePlace, onEditDuration }:
                             {plannedPlace.place.name}
                         </h6>
                         <p className="text-14 tracking-[0.14px] text-gray500 overflow-hidden whitespace-nowrap text-ellipsis">
-                            <span className="text-14 text-main  font-medium">
-                                {categories[plannedPlace.place.category]}
-                            </span>
+                            <PlaceCategory category={plannedPlace.place.category} className="text-14 tracking-[0.14px]" />
                             {plannedPlace.place.address}
                         </p>
                     </div>

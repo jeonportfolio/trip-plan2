@@ -1,4 +1,5 @@
 import Loading from "@/components/common/Loading";
+import WideLayout from "@/components/common/WideLayout";
 import ItineraryController from "@/components/itinerary/ItineraryController";
 import useGenerateItinerary from "@/hooks/itinerary/useGenerateItinerary"
 import { PlanState, usePlanStore } from "@/store";
@@ -30,9 +31,16 @@ export default function ItineraryCity(){
         },[ city, dailyTimes, generateItinerary, navigate, plannedPlaces])
 
     
-    return itinerary ? (
-        <ItineraryController itinerary={itinerary}/>
-    ): (
-        <Loading/>
-    )
+    return( <WideLayout>
+        
+           {!itinerary ? <Loading/> : <div className="flex h-full"> 
+            <ItineraryController itinerary={itinerary}/>
+                <div className="flex-1 bg-gray300">
+                    {/* {지도 추가} */}
+                </div>
+            </div>
+           }
+        
+     </WideLayout>
+    );
 }
