@@ -1,5 +1,6 @@
 import { PlanState } from "@/store";
-import { transfromTimeToMinutes } from "@/utils/time";
+import { ItineraryItem } from "@/types";
+import { parseTime, timeToString, transfromTimeToMinutes } from "@/utils/time";
 
 export default function useGenerateItinerary () {
 
@@ -29,16 +30,11 @@ function getMatrix(locations: { lat: number; lng: number}[]): Promise<google.map
 
 }
 
-async function generateItinerary(places: PlanState["plannedPlaces"], dailyTime: PlanState["dailyTimes"]) {
+async function generateItinerary(places: PlanState["plannedPlaces"], dailyTimes: PlanState["dailyTimes"]) {
     const locations = places.map(({ place }) => place.coordinates);
     const matrix = await getMatrix(locations);
     const route = findOptimalRoute(matrix);
-    const times = dailyTime.map(({ startTime, endTime }) => {
-        const start = transfromTimeToMinutes(startTime);
-        const end = transfromTimeToMinutes(endTime);
-        return end - start;
-    })
-    const itinerary = groupPlacesByDay({ route, places, matrix }, times);
+    const itinerary = groupPlacesByDay({ route, places, matrix }, dailyTimes);
     return itinerary
 };
 
@@ -75,13 +71,29 @@ function findOptimalRoute(matrix: google.maps.DistanceMatrixResponse) {
 }
 
 const THRESHOLD = 10_000;
-function groupPlacesByDay({ route, places, matrix }: { route: number[]; places: PlanState["plannedPlaces"]; matrix: google.maps.DistanceMatrixResponse}, times: number[]) {
-    const itinerary: PlanState["plannedPlaces"][] =[];
+function groupPlacesByDay({ 
+        route, 
+        places, 
+        matrix }: { 
+            route: number[]; 
+            places: PlanState["plannedPlaces"]; 
+            matrix: google.maps.DistanceMatrixResponse}, 
+            dailyTimes: PlanState['dailyTimes']
+        ) {
+    const itinerary: ItineraryItem[][] =[];
     let dailyDuration = 0;
+    let dailyTime = getDailyTimes(dailyTimes[0])
 
     route.forEach((placeIndex, index) => {
         if(itinerary.length === 0) {
-            itinerary.push([places[placeIndex]]);
+            const endTime = transfromTimeToMinutes(dailyTimes[0].startTime) + places[placeIndex].duration;
+            
+            itinerary.push([{
+                ...places[placeIndex],
+                startTime: dailyTimes[0].startTime,
+                endTime: timeToString( parseTime(endTime)),
+                duration: places[placeIndex].duration,                
+            }]);
             dailyDuration = places[placeIndex].duration;
             return;
         }        
@@ -93,15 +105,32 @@ function groupPlacesByDay({ route, places, matrix }: { route: number[]; places: 
 
         dailyDuration += duration;
 
-        if(distance > THRESHOLD || dailyDuration > times[itinerary.length - 1]) {
-            itinerary.push([places[placeIndex]]);
+        if(distance > THRESHOLD || dailyDuration > dailyTime) {
+            dailyTime = getDailyTimes(dailyTimes[itinerary.length])
+            const endTime = transfromTimeToMinutes(dailyTimes[0].startTime) + places[placeIndex].duration;
+        
+
+            itinerary.push([{
+                ...places[placeIndex],
+                startTime: dailyTimes[itinerary.length].startTime,
+                endTime: timeToString( parseTime(endTime)),
+            }]);
             dailyDuration = places[placeIndex].duration;
         } else {
-            day.push(places[placeIndex]);
+            const startTime = transfromTimeToMinutes(dailyTimes[itinerary.length - 1].startTime) + dailyDuration;
+            const endTime = startTime + places[placeIndex].duration;
+    
+
+            day.push({
+                ...places[placeIndex],
+                startTime: timeToString( parseTime(startTime)),
+                endTime:  timeToString( parseTime(endTime))
+            });
+            dailyDuration += places[placeIndex].duration;
         }
     })
 
-    while (itinerary.length < times.length) {
+    while (itinerary.length < dailyTimes.length) {
         const max = itinerary.reduce((acc, day, index) => {
             if(day.length > itinerary[acc].length) {
                 return index;
@@ -120,4 +149,10 @@ function groupPlacesByDay({ route, places, matrix }: { route: number[]; places: 
     }
 
     return itinerary;
+}
+
+function getDailyTimes({ startTime, endTime} : {startTime: string; endTime: string;}){
+         const start = transfromTimeToMinutes(startTime);
+         const end = transfromTimeToMinutes(endTime);
+         return end - start;
 }

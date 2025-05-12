@@ -47,3 +47,10 @@ export interface Place {
     rating: number; //장소의 평점
     city: City['code'];// 구분자
 }
+
+export interface ItineraryItem {
+    place: Place;
+    duration: number; //장소에 머무르는 시간 
+    startTime: string; // 시작 시간 
+    endTime: string; // 종료 시간 
+}

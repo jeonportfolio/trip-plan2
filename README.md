@@ -107,3 +107,4 @@
 ▶ 모든 장소의 거리 판별(구글 Maps API 사용 (DistanceMatrixService)) -> 대중교통 사용<br/>
 ▶ 방문된 장소를 제외해서 중복을 방지<br/>
 ▶ 사용자가 설정한 거리와 시간을 판단<br/>
+▶ useLocation으로 URL의 정보를 받아 모달의 상태 변환

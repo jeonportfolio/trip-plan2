@@ -8,13 +8,14 @@ type Tab = {
 
 
 interface Props {
+    className?: string;
     tabs : Tab[];
 }
-export default function Tabs({ tabs }: Props) {
+export default function Tabs({ tabs,className }: Props) {
     const [currentTab, setCurrentTab] = useState(0);
 
     return (
-        <div className="flex">
+        <div className={cn("flex", className)}>
             <TabButtonsList 
                 steps={tabs} 
                 currentStep={currentTab} 

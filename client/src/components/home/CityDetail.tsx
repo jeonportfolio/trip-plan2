@@ -5,6 +5,7 @@ import VisaIcon from'@/assets/icons/ticket.svg?react'
 import VoltageIcon from'@/assets/icons/power.svg?react'
 import ClockIcon from'@/assets/icons/schedule.svg?react'
 import Button from "../common/Button";
+import { Link } from "react-router-dom";
 
 interface Props {
     city: City;
@@ -85,12 +86,14 @@ export default function CityDetail({city}: Props) {
             />
         </div>
         <div>
-            <Button className="w-185 flex items-center justify-center">
-                <span className="ml-8">
-                    일정 만들기
-                </span>
-                <ArrowIcon className="ml-5"/>
-            </Button>
+           <Link to={`/plan/${city.code}`}>
+                <Button className="w-185 flex items-center justify-center">
+                    <span className="ml-8">
+                        일정 만들기
+                    </span>
+                    <ArrowIcon className="ml-5"/>
+                </Button>
+            </Link> 
         </div>
     </div>;
 }

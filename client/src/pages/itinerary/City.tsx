@@ -2,7 +2,8 @@ import Loading from "@/components/common/Loading";
 import WideLayout from "@/components/common/WideLayout";
 import ItineraryController from "@/components/itinerary/ItineraryController";
 import useGenerateItinerary from "@/hooks/itinerary/useGenerateItinerary"
-import { PlanState, usePlanStore } from "@/store";
+import { usePlanStore } from "@/store";
+import { ItineraryItem } from "@/types";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -16,7 +17,7 @@ export default function ItineraryCity(){
     
         
 
-        const [ itinerary, setItinerary ] = useState<PlanState["plannedPlaces"][] | null>(null);
+        const [ itinerary, setItinerary ] = useState<ItineraryItem[][] | null>(null);
         
         useEffect(() => {
 
@@ -31,16 +32,11 @@ export default function ItineraryCity(){
         },[ city, dailyTimes, generateItinerary, navigate, plannedPlaces])
 
     
-    return( <WideLayout>
-        
-           {!itinerary ? <Loading/> : <div className="flex h-full"> 
-            <ItineraryController itinerary={itinerary}/>
-                <div className="flex-1 bg-gray300">
-                    {/* {지도 추가} */}
-                </div>
-            </div>
-           }
-        
+    return( 
+    
+    <WideLayout>
+               {!itinerary ? <Loading/> :<ItineraryController itinerary={itinerary}/>}
      </WideLayout>
     );
 }
+

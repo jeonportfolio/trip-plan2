@@ -1,5 +1,5 @@
 import { usePlanStore } from "@/store";
-import Map, { MapMarker, MapPath } from "./Map";
+import Map, { MapMarker, MapPath } from "@/components/plan/Map";
 
 interface Props {
     coordinates: {
