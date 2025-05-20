@@ -13,12 +13,18 @@
 
 ▶nedb를 사용해 도시 정보 가져오기 (get, post) 방식 사용<br/>
 ▶fetch를 통해 api 통신 (JSON)<br/>
-▶api는 따로 서버를 만들고 proxy 적용, client와 서버 분리` yarn add -D concurrently@8.2.2` 동시실행<br/>
+▶api는 따로 서버를 만들고 proxy 적용, client와 서버 분리` yarn add -D concurrently@8.2.2` 서버 클라이언트 동시실행<br/>
+▶api 에서 get과 post 연결 (db.findOne, db.insert)
 ▶상대경로를 tsconfig.js를 생성하여 절대경로로 변환 경로 간편화<br/>
 ▶`yarn add react-router-dom@6.25.1` 리액트 라우터 사용<br/>
 ▶ Suspense와 lazy를 사용해서 초기로딩 (필요한 자원만 렌더링 네트워크 소스 최적화)사용자 경험 증가<br/>
 ▶`yarn add -D tailwindcss@3.4.3 postcss@8.4.39 autoprefixer@10.4.19` `yarn tailwindcss init -p` tailwindcss 관련 모듈 설치<br/>
 ▶ card -> cardList 구조<br/>
+
+## 데이터 입력 <br/> 
+
+▶ fetch에서 Post를 사용해 JSON 방식으로 받음 <br/>
+▶ 데이터 전송의 성공과 실패 알림<br/>
 
 ## 상단 탭 & 검색창 구성 <br/>
 
@@ -108,3 +114,12 @@
 ▶ 방문된 장소를 제외해서 중복을 방지<br/>
 ▶ 사용자가 설정한 거리와 시간을 판단<br/>
 ▶ useLocation으로 URL의 정보를 받아 모달의 상태 변환
+
+
+## Cypress 테스트
+
+▶ `yarn add -D cypress@13.7.3` <br/>
+▶ `yarn add -D @testing-library/cypress@10.0.2`개발환경과 컴포넌트를 일치시켜 일관된 테스트 환경 <br/>
+▶ `yarn cypress open` 으로 cypress 열기 -> `yarn cy:open`으로 변경<br/>
+▶ 클라이언트에서 진행되기 때문에 cypress를 client 안쪽으로 이동<br/>
+▶ 여행지 목록과 필터 테스트 <br/>

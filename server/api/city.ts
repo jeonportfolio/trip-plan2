@@ -5,8 +5,12 @@ import { citiesDB, countriesDB, placesDB } from "../db";
 
 const cityRouter = Router();
 
-cityRouter.get('/', (_req, res) => {
-    citiesDB.find({}, (err: Error | null, cities: City[]) => {
+cityRouter.get('/', (req, res) => {
+
+    const  { filter } = req.query;
+    const query = filter ? filter === 'domestic' ? { country: 'KR'} :  {country: { $ne: 'KR'}} : {};
+
+    citiesDB.find(query, (err: Error | null, cities: City[]) => {
         if(err){
             res.status(500).send(err);
         } else {
@@ -29,15 +33,17 @@ cityRouter.get('/', (_req, res) => {
 });
 
 cityRouter.get('/search', (req, res) => {
-    const { q } = req.query;
+    const { q, filter } = req.query;
 
     if(typeof q != 'string') {
         return res.status(400).send('Invalid query'); 
     }
 
     const queryRegex = new RegExp(q, 'i');
+
+    const query = filter ? filter === 'domestic' ? { country: 'KR'} :  {country: { $ne: 'KR'}} : {};
     
-    countriesDB.find({}, (err: Error | null, countries: Country[]) => {
+    countriesDB.find( query , (err: Error | null, countries: Country[]) => {
        if(err) {
             return res.status(500).send(err);
        } 
