@@ -122,4 +122,6 @@
 ▶ `yarn add -D @testing-library/cypress@10.0.2`개발환경과 컴포넌트를 일치시켜 일관된 테스트 환경 <br/>
 ▶ `yarn cypress open` 으로 cypress 열기 -> `yarn cy:open`으로 변경<br/>
 ▶ 클라이언트에서 진행되기 때문에 cypress를 client 안쪽으로 이동<br/>
+▶ beforeEach와 각각의 테스트를 분리해서 독립성 보장<br/>
 ▶ 여행지 목록과 필터 테스트 <br/>
+▶ 여행지 검색테스트, 도시 상세 모달에서 일정 만들기 테스트<br/>
