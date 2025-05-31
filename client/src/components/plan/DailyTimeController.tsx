@@ -44,10 +44,10 @@ export default function DailyTimeController({ onCompleted }: { onCompleted: () =
                                 <td className="py-10">{format(dailyTime.date, 'M/dd')}</td>
                                 <td className="py-10">{format(dailyTime.date, 'EEE')}</td>
                                 <td className="py-10">
-                                    <input type="time" value={dailyTime.startTime} onChange={(e) => setDailyTime(index, e.currentTarget.value, 'startTime')}></input>
+                                    <input data-testid="daily-time-start" type="time" value={dailyTime.startTime} onChange={(e) => setDailyTime(index, e.currentTarget.value, 'startTime')}></input>
                                 </td>
                                 <td className="py-10">
-                                    <input type="time" value={dailyTime.endTime} onChange={(e) => setDailyTime(index, e.currentTarget.value, 'endTime')}/>
+                                    <input data-testid="daily-time-end" type="time" value={dailyTime.endTime} onChange={(e) => setDailyTime(index, e.currentTarget.value, 'endTime')}/>
                                 </td>
                             </tr>
                         ))}

@@ -15,5 +15,24 @@ describe("여행 계획 페이지", () => {
             .should('exist')
             .click();
         cy.findByRole('button', { name: '선택'}).click();
-    })
-})
+
+        //시간 변경하기 
+        cy.findAllByTestId("daily-time-start").first().type("09:00");
+        cy.findByText('시간 설정 완료').click();
+
+            // 필터 적용하기
+            cy.findAllByTestId('place-card').should('have.length.greaterThan',0);
+
+            let totalCount = 0;
+            cy.findAllByTestId('place-card').its('length').then(count => {
+              totalCount = count;
+
+              //명소 필터를 선택한다.
+             cy.findByRole('button', { name: '명소' }).click();
+             cy.findAllByTestId('place-card').should(
+                 'have.length.lessThan', 
+                 totalCount,
+             );
+         });
+      });
+    });

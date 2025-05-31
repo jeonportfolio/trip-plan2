@@ -10,15 +10,13 @@ describe('template spec', () => {
     cy.findAllByTestId('city-card').its('length').then(count => {
       totalCount = count;
 
+       //국가 필터를 선택한다.
       cy.findByText("국내").click();
       cy.findAllByTestId('city-card').should(
           'have.length.lessThan', 
           totalCount,
       );
     });
-    
-    //국가 필터를 선택한다.
-    
   });
 
   it('검색을 입력했을 때 검색 결과가 잘 노출되어야 한다.', () => {

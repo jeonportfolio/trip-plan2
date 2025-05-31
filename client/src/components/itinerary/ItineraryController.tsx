@@ -3,15 +3,16 @@ import ControllerHeader from "../shared/ControllerHeader";
 import Tabs from "../common/Tabs";
 import DayItineraryView from "./DayItineraryView";
 import ItineraryMapContainer from "./ItineraryMapContainer";
-import { ItineraryItem } from "@/types";
+import { City, ItineraryItem } from "@/types";
 
 
 
 interface Props {
     itinerary: ItineraryItem[][];
+    city:City;
 }
 
-export default function ItineraryController({itinerary} : Props) {
+export default function ItineraryController({itinerary, city} : Props) {
     
     const { startDate, endDate, plannedAccomodations } = usePlanStore();
     
@@ -26,7 +27,7 @@ export default function ItineraryController({itinerary} : Props) {
                     content: () => (
                        <div className="h-full flex">
                         <div className="px-24 py-30 flex-col gap-y-18 overflow-y-hidden h-full shrink-0">
-                            <ControllerHeader startDate={startDate} endDate={endDate}/>
+                            <ControllerHeader startDate={startDate} endDate={endDate} cityName={city.name}/>
                             <DayItineraryView plannedPlaces={day}/>
                         </div> 
                         <ItineraryMapContainer plannedPlaces={day} accomodation={plannedAccomodations[index]!} />

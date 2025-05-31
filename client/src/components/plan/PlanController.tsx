@@ -7,17 +7,18 @@ import PlaceContainer from "./PlaceContainer";
 import AccomodationContainer from "./AccomodationContainer";
 import AccomodationController from "./AccomodationController";
 import { useNavigate, useParams } from "react-router-dom";
+import { City } from "@/types";
 
-export default function PlanController () {
+export default function PlanController ({ city }: { city: City}) {
     
     const { startDate, endDate } = usePlanStore(); 
-    const { city } = useParams();
+    const { city: cityId } = useParams();
     const navigate = useNavigate();
     
     return( <div className="h-full flex">
         <Wizard
             onCompleted={() => {
-                navigate(`/itinerary/${city}`);
+                navigate(`/itinerary/${cityId}`);
             }}
 
             steps={[{
@@ -25,7 +26,7 @@ export default function PlanController () {
                 content: ({ onNext }) => (
                     
                     <div className="px-24 py-30 flex-col gap-y-18 overflow-y-hidden h-full">
-                        <PlanControllerHeader startDate={startDate} endDate={endDate}/>
+                        <PlanControllerHeader startDate={startDate} endDate={endDate} cityName={city.name}/>
                         <DailyTimeController onCompleted={onNext}/>
                     </div>
                 ),
@@ -35,7 +36,7 @@ export default function PlanController () {
                 content: () => (
                    <div className="flex"> 
                         <div className="px-24 py-30 flex-col gap-y-18 overflow-y-hidden h-full">
-                            <PlanControllerHeader startDate={startDate} endDate={endDate}/>
+                            <PlanControllerHeader startDate={startDate} endDate={endDate} cityName={city.name}/>
                             <div className="h-full"> 
                         <div className="p-14 border-b-3 border-b-main mb-18">
                             <h4 className="text-18 font-semibold text-main">장소 선택</h4>
@@ -54,10 +55,10 @@ export default function PlanController () {
                 title:'숙소 선택',
                 content: () => (
                     <div className="px-24 py-30 flex-col gap-y-18 overflow-y-hidden h-full">
-                         <PlanControllerHeader startDate={startDate} endDate={endDate}/>
+                         <PlanControllerHeader startDate={startDate} endDate={endDate} cityName={city.name}/>
                          <div className="flex"> 
                         <div className="px-24 py-30 flex-col gap-y-18 overflow-y-hidden h-full">
-                            <PlanControllerHeader startDate={startDate} endDate={endDate}/>
+                            <PlanControllerHeader startDate={startDate} endDate={endDate} cityName={city.name}/>
                             <div className="h-full"> 
                         <div className="p-14 border-b-3 border-b-main mb-18">
                             <h4 className="text-18 font-semibold text-main">숙소 선택</h4>

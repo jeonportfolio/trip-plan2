@@ -26,7 +26,7 @@ export default function PlaceList({ places, onAddPlace }: Props) {
 
 function PlaceItem({ place, onAddPlace }: { place: Place; onAddPlace: (place: Place) => void }){
     return (
-        <div className="flex gap-x-11 mb-24">
+        <div className="flex gap-x-11 mb-24" data-testid="place-card">
             <img className="w-68 h-68 rounded-6 bg-bg" src={place.thumbnail}></img>
             <div className="flex-1 flex flex-col items-start gap-y-8">
                 <h6 className="text-17 font-semibold tracking-[0.17px] ">{place.name}</h6>
