@@ -8,10 +8,12 @@ interface Props {
 
 export default function DayItineraryView({ plannedPlaces }: Props) {
     return (
-        <div className="flex flex-col gap-y-50">
+        <div className="flex flex-col gap-y-50" data-testid="itinerary-card">
             {plannedPlaces.map(({ place, startTime, endTime}) => (
-                <div className="flex w-[253px] pl-29 relative before:absolute before:w-1 before:h-69 
-                before:top-35 before:left-10 before:block before:bg-gray200 last:before:h-0">
+                <div 
+                    key={`${place.name}`}
+                    className="flex w-[253px] pl-29 relative before:absolute before:w-1 before:h-69 
+                    before:top-35 before:left-10 before:block before:bg-gray200 last:before:h-0">
 
                     <div className="flex-1 flex-col gap-y-8 text-left">
                         <p className="text-14 text-gray500">

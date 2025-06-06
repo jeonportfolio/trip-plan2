@@ -34,5 +34,26 @@ describe("여행 계획 페이지", () => {
                  totalCount,
              );
          });
+        cy.findByRole('button', { name: '명소' }).click();
+
+        //장소 추가하기
+        cy.findAllByTitle('plus').each($el => {
+            cy.wrap($el).click();
+        });
+
+        cy.findAllByRole('button', { name: '다음' }).click();
+        
       });
+
+      //숙소 선택하기 
+      cy.findAllByTitle('plus').first().click();
+      cy.findAllByTitle('plus').first().click();
+      cy.findByRole('button', { name:'다음' }).click();
+
+      //일정 확인하기 
+      cy.url().should('include', 'itinerary/seoul');
+      cy.findAllByTestId('itinerary-card').should('have.length.gt',0);
+      cy.findByRole('button', { name: '2일차'}).click();
+      cy.findAllByTestId('itinerary-card').should('have.length.gt',0);
+
     });

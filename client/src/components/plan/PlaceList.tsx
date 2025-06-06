@@ -46,7 +46,7 @@ function PlaceItem({ place, onAddPlace }: { place: Place; onAddPlace: (place: Pl
                 </div>
             </div>
             <button className="relative" onClick={() => onAddPlace(place)}>
-                <PlusIcon className="absolute top-1/2 transform -translate-y-1/2  -translate-x-1/2"/>
+                <PlusIcon className="absolute top-1/2 transform -translate-y-1/2  -translate-x-1/2" title="plus"/>
             </button>
         </div>
     )
