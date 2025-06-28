@@ -1,18 +1,10 @@
-import { getCity } from "@/services/plan";
-import { PlanState, usePlanStore } from "@/store";
+import { PlanState } from "@/store";
 import { transfromTimeToMinutes } from "@/utils/time";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
 
 export default function useGenerateItinerary() {
-    const { city: cityId } = useParams();
-    const { data, isLoading } = useQuery({
-        queryKey: ['city', cityId],
-        queryFn: () => getCity(cityId),
-    });
-    const { plannedPlaces, dailyTimes } = usePlanStore();
-
-    return gernerateItinerary( plannedPlaces, dailyTimes);
+    return {
+        gernerateItinerary
+    };
 }
 
 // 경유지간 거리 측정 
@@ -67,7 +59,7 @@ function findOptimalRoute(matrix: google.maps.DistanceMatrixResponse) {
             if(visited.has(i)) {
                 continue;
             }
-
+            console.log(matrix, current, i)
             const distance = matrix.rows[current].elements[i].distance.value;
             if(distance < min) {
                 min = distance;
