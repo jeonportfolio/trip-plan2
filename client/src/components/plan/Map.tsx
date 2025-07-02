@@ -33,7 +33,7 @@ export default function Map({center, children}: PropsWithChildren<Props>) {
                 center={center} 
                 zoom={12} 
                 mapContainerClassName="w-full h-full"
-            >
+        >
             {children}
 
         </GoogleMap>

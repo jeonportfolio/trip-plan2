@@ -1,72 +1,67 @@
 import { PlanState } from "@/store";
-import { transfromTimeToMinutes } from "@/utils/time";
+import { ItineraryItem } from "@/types";
+import { parseTime, timeToString, transfromTimeToMinutes } from "@/utils/time";
 
-export default function useGenerateItinerary() {
+export default function useGenerateItinerary () {
+
     return {
-        gernerateItinerary
+        generateItinerary
     };
 }
 
-// 경유지간 거리 측정 
-function getMatrix(locations: {lat:number; lng: number}[]): Promise<google.maps.DistanceMatrixResponse> {
+function getMatrix(locations: { lat: number; lng: number}[]): Promise<google.maps.DistanceMatrixResponse> {
     const distanceMatrixService = new google.maps.DistanceMatrixService();
-    // 출발지와, 도착지 
+
     return new Promise((resolve, reject) => {
         const request: google.maps.DistanceMatrixRequest = {
             origins: locations,
-            destinations : locations,
-            travelMode: google.maps.TravelMode.TRANSIT
-        }
+            destinations: locations,
+            travelMode:google.maps.TravelMode.TRANSIT
+        } 
+
         distanceMatrixService.getDistanceMatrix(request, (response, status) => {
             if(status === google.maps.DistanceMatrixStatus.OK) {
                 resolve(response!);
-            }else {
+            } else {
                 reject(status);
             }
         })
     })
+
 }
 
-
- async function gernerateItinerary(places: PlanState["plannedPlaces"], dailyTimes:PlanState["dailyTimes"]) {
+async function generateItinerary(places: PlanState["plannedPlaces"], dailyTimes: PlanState["dailyTimes"]) {
     const locations = places.map(({ place }) => place.coordinates);
-    const matrix = await getMatrix(locations); 
+    const matrix = await getMatrix(locations);
     const route = findOptimalRoute(matrix);
-    const times = dailyTimes.map(({ startTime, endTime}) => {
-        const start = transfromTimeToMinutes(startTime);
-        const end = transfromTimeToMinutes(endTime);
-        return end - start;
-    })
-    const itinerary = groupPlacesByDay({ route, places, matrix}, times );
-    
-    return itinerary;
+    const itinerary = groupPlacesByDay({ route, places, matrix }, dailyTimes);
+    return itinerary
+};
 
-}
-
-// 최적의 경로 도출 (방문된 장소를 제외)
 function findOptimalRoute(matrix: google.maps.DistanceMatrixResponse) {
     const length = matrix.rows.length;
     const visited = new Set<number>();
     const route = [0];
     visited.add(0);
 
-    while(visited.size < length) {
+    while(visited.size < length){
         let min = Infinity;
         let next = -1;
-        const current = route[route.length -1];
+        const current = route[route.length - 1];
 
-        for( let i = 0; i < length; i++) {
-            if(visited.has(i)) {
+        for(let i = 0; i < length; i++) {
+            if(visited.has(i)){
                 continue;
             }
-            console.log(matrix, current, i)
+            
             const distance = matrix.rows[current].elements[i].distance.value;
             if(distance < min) {
                 min = distance;
                 next = i;
             }
         }
-        if(next !== -1) {
+
+        if (next !== -1 ){
             route.push(next);
             visited.add(next);
         }
@@ -75,54 +70,89 @@ function findOptimalRoute(matrix: google.maps.DistanceMatrixResponse) {
     return route;
 }
 
-const THRESHOLD = 10_000; // 10km이내 지점만 여행 가능 
-
-function groupPlacesByDay({ route, places, matrix }: { route:number[]; places: PlanState["plannedPlaces"]; matrix: google.maps
-    .DistanceMatrixResponse}, times: number[]) {
-    const itinerary: PlanState['plannedPlaces'][] = [];
-    let dailyDuration = 0; 
+const THRESHOLD = 10_000;
+function groupPlacesByDay({ 
+        route, 
+        places, 
+        matrix }: { 
+            route: number[]; 
+            places: PlanState["plannedPlaces"]; 
+            matrix: google.maps.DistanceMatrixResponse}, 
+            dailyTimes: PlanState['dailyTimes']
+        ) {
+    const itinerary: ItineraryItem[][] =[];
+    let dailyDuration = 0;
+    let dailyTime = getDailyTimes(dailyTimes[0])
 
     route.forEach((placeIndex, index) => {
         if(itinerary.length === 0) {
-            itinerary.push([places[placeIndex]]);
+            const endTime = transfromTimeToMinutes(dailyTimes[0].startTime) + places[placeIndex].duration;
+            
+            itinerary.push([{
+                ...places[placeIndex],
+                startTime: dailyTimes[0].startTime,
+                endTime: timeToString( parseTime(endTime)),
+                duration: places[placeIndex].duration,                
+            }]);
             dailyDuration = places[placeIndex].duration;
             return;
-        } 
+        }        
 
         const day = itinerary[itinerary.length - 1];
         const lastPlaceIndex = route[index - 1];
         const distance = matrix.rows[lastPlaceIndex].elements[placeIndex].distance.value;
-        const duration = matrix.rows[lastPlaceIndex].elements[placeIndex].distance.value / 60; //분단위 사용
+        const duration = matrix.rows[lastPlaceIndex].elements[placeIndex].duration.value / 60;
+
         dailyDuration += duration;
 
-        // 10km 초과 했거나 하루 일정 시간을 넘어가면 새로운 일정으로 등록
-        if(distance > THRESHOLD || dailyDuration > times[itinerary.length - 1]) {
-            itinerary.push([places[placeIndex]]);
+        if(distance > THRESHOLD || dailyDuration > dailyTime) {
+            dailyTime = getDailyTimes(dailyTimes[itinerary.length])
+            const endTime = transfromTimeToMinutes(dailyTimes[0].startTime) + places[placeIndex].duration;
+        
+
+            itinerary.push([{
+                ...places[placeIndex],
+                startTime: dailyTimes[itinerary.length].startTime,
+                endTime: timeToString( parseTime(endTime)),
+            }]);
             dailyDuration = places[placeIndex].duration;
         } else {
-            day.push(places[placeIndex])
+            const startTime = transfromTimeToMinutes(dailyTimes[itinerary.length - 1].startTime) + dailyDuration;
+            const endTime = startTime + places[placeIndex].duration;
+    
+
+            day.push({
+                ...places[placeIndex],
+                startTime: timeToString( parseTime(startTime)),
+                endTime:  timeToString( parseTime(endTime))
+            });
+            dailyDuration += places[placeIndex].duration;
         }
     })
 
-    // 일정이 많은 날을 쪼개서 새로운 일정을 만듬
-    while (itinerary.length < times.length) {
-        const max = itinerary.reduce((acc, day , index) => {
-            if(day.length> itinerary[acc].length){
+    while (itinerary.length < dailyTimes.length) {
+        const max = itinerary.reduce((acc, day, index) => {
+            if(day.length > itinerary[acc].length) {
                 return index;
             }
             return acc;
-        },0);
+        }, 0);
 
         if(itinerary[max].length === 1) {
             break;
         }
-    
-        const day = itinerary[max]; 
-        const half = Math.floor(day.length / 2);
-        itinerary[max] = day.slice(0,half);
-        itinerary.push(day.slice(half));
 
+        const day = itinerary[max];
+        const half = Math.floor(day.length / 2);
+        itinerary[max] = day.slice(0, half);
+        itinerary.push(day.slice(half));
     }
 
     return itinerary;
+}
+
+function getDailyTimes({ startTime, endTime} : {startTime: string; endTime: string;}){
+         const start = transfromTimeToMinutes(startTime);
+         const end = transfromTimeToMinutes(endTime);
+         return end - start;
 }

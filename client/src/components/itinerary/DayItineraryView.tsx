@@ -3,6 +3,7 @@ import { ItineraryItem } from "@/types";
 
 interface Props {
     plannedPlaces: ItineraryItem[];
+
 }
 
 export default function DayItineraryView({ plannedPlaces }: Props) {

@@ -19,7 +19,9 @@ export default function ItineraryController({itinerary, city} : Props) {
     
     return (
 
-    <div className="flex-h-full">          
+    <div className="flex-h-full">    
+       
+            
                 <Tabs className="h-full" tabs={itinerary.map((day, index) => ({
                     title:`${index + 1} 일차`,
                     content: () => (

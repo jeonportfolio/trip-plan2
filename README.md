@@ -107,14 +107,13 @@
 ▶ 숙소 추가&제거(store에서 관리)숙소의 개수 = 여행 일자의 -1<br/>
 
 
-## 일정 계획
+## 
 
 ▶ MapProvider를 통해 앱 전역에 Google Map API 적용<br/>
-▶ 모든 장소의 거리 판별(구글 Maps API 사용 (DistanceMatrixService)) -> 대중교통 (위도, 경도 값 입력) -> Promise를 사용해서 비동기 함수로 변환 <br/>
-▶ 경유지간 최적의 거리 판단(Set을 사용해서 방문된 장소를 제외해서 중복을 방지)<br/>
-▶ 사용자가 설정한 거리와 시간을 판단(TRESHOLD를 통해 하루 10km 이동가능)<br/>
-▶ reduce를 사용해서 일정이 많은 하루를 쪼개 새로운 일정으로 만듦<br/>
-▶ useLocation으로 URL의 정보를 받아 모달의 상태 변환 <br/>
+▶ 모든 장소의 거리 판별(구글 Maps API 사용 (DistanceMatrixService)) -> 대중교통 사용<br/>
+▶ 방문된 장소를 제외해서 중복을 방지<br/>
+▶ 사용자가 설정한 거리와 시간을 판단<br/>
+▶ useLocation으로 URL의 정보를 받아 모달의 상태 변환
 
 
 ## Cypress 테스트
